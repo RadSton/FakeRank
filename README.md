@@ -2,23 +2,58 @@
 
 This plugin allows moderators to change there badge to a fake one so they can stay undercover!
 
-Idea: radston12 & max.bambus76
+Idea: max.bambus76 & radston12 
+Programmed by: radston12
 
 ## Usage:
 
-In RemoteAdmin Console type:
+This plugin adds one command to the RemoteAdmin Console:
 
-``fakerank <color> <rankname>``
+    fakerank
 
-For ``rankname`` you can enter anything it can also include spaces!
+### It has three sub commands:
 
-or to set an empty badge:
+#### clear
 
-``fakerank clear``
+    fakerank clear
 
-When the badge is cleared it will be set to an empty default string, after a rejoin it will reapply a badge according to the SCP: SL server settings!
+-> To nuke your rank
 
-Valid colors are: 
+OR 
+
+    fakerank clear <RemoteAdminUserId>
+    
+-> To nuke their rank
+
+Note: When the badge is cleared it will be set to an empty default string, after a rejoin it will reapply a badge according to the SCP: SL server settings!
+
+#### set
+
+    fakerank set <RemoteAdminUserId> <Color> <FakeRank>
+
+-> To set somebodys fakerank (Valid colors are down below!)
+
+For ``FakeRank`` you can enter anything it can also include spaces!
+
+
+#### set
+
+    fakerank set <RemoteAdminUserId> <Color> <FakeRank>
+
+-> To set somebodys fakerank (Valid colors are down below!)
+
+For ``<FakeRank>`` you can enter anything it can also include spaces!
+
+#### self
+
+    fakerank self <RemoteAdminUserId> <Color> <FakeRank>
+
+-> To set your fakerank (Valid colors are down below!)
+
+For ``<FakeRank>`` you can enter anything it can also include spaces!
+
+
+### Valid colors are: 
  - pink 
  - red
  - brown
