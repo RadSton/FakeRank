@@ -3,6 +3,7 @@
 This plugin allows moderators to change there badge to a fake one so they can stay undercover!
 
 Idea: max.bambus76 & radston12 
+
 Programmed by: radston12
 
 ## Usage:
@@ -11,15 +12,15 @@ This plugin adds one command to the RemoteAdmin Console:
 
     fakerank
 
-### It has three sub commands:
+## It has three sub commands:
 
-#### clear
+### clear
 
     fakerank clear
 
 -> To nuke your rank
 
-OR 
+It can also be used to nuke the rank of someone other:
 
     fakerank clear <RemoteAdminUserId>
     
@@ -27,7 +28,7 @@ OR
 
 Note: When the badge is cleared it will be set to an empty default string, after a rejoin it will reapply a badge according to the SCP: SL server settings!
 
-#### set
+### set
 
     fakerank set <RemoteAdminUserId> <Color> <FakeRank>
 
@@ -36,7 +37,7 @@ Note: When the badge is cleared it will be set to an empty default string, after
 For ``FakeRank`` you can enter anything it can also include spaces!
 
 
-#### set
+### set
 
     fakerank set <RemoteAdminUserId> <Color> <FakeRank>
 
@@ -44,7 +45,7 @@ For ``FakeRank`` you can enter anything it can also include spaces!
 
 For ``<FakeRank>`` you can enter anything it can also include spaces!
 
-#### self
+### self
 
     fakerank self <RemoteAdminUserId> <Color> <FakeRank>
 
@@ -53,7 +54,7 @@ For ``<FakeRank>`` you can enter anything it can also include spaces!
 For ``<FakeRank>`` you can enter anything it can also include spaces!
 
 
-### Valid colors are: 
+## Valid colors are: 
  - pink 
  - red
  - brown
