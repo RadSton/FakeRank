@@ -8,6 +8,8 @@ Programmed by: radston12
 
 ## Usage:
 
+Note: This plugin stores the fakerank in the EXILED config folder and will reapply the fakerank on rejoin!
+
 This plugin adds one command to the RemoteAdmin Console:
 
     fakerank
