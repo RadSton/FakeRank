@@ -34,20 +34,11 @@ Note: When the badge is cleared it will be set to an empty default string, after
 
 -> To set somebodys fakerank (Valid colors are down below!)
 
-For ``FakeRank`` you can enter anything it can also include spaces!
-
-
-### set
-
-    fakerank set <RemoteAdminUserId> <Color> <FakeRank>
-
--> To set somebodys fakerank (Valid colors are down below!)
-
 For ``<FakeRank>`` you can enter anything it can also include spaces!
 
 ### self
 
-    fakerank self <RemoteAdminUserId> <Color> <FakeRank>
+    fakerank self <Color> <FakeRank>
 
 -> To set your fakerank (Valid colors are down below!)
 
