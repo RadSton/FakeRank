@@ -43,23 +43,23 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
 
             if (target == null)
             {
-                response = "[FAKERANK] Player not found!";
+                response = "[FAKERANK] Target player not found!";
                 return false;
             }
 
-            if (FakeRankStorage.Storage.ContainsKey(player.UserId))
+            if (FakeRankStorage.Storage.ContainsKey(target.UserId))
             {
-                FakeRankStorage.Storage.Remove(player.UserId);
+                FakeRankStorage.Storage.Remove(target.UserId);
                 FakeRankStorage.Save();
             }
 
-            player.RankName = "";
-            player.RankColor = "default";
+            target.RankName = "";
+            target.RankColor = "default";
 
             if (arguments.Count != 0)
-                response = $"[FAKERANK] Nuked rank of {target.Nickname}!";
+                response = $"[FAKERANK] Nuked rank of {target.Nickname}! They will get back their normal rank after a round restart";
             else
-                response = $"[FAKERANK] Nuked your rank!";
+                response = $"[FAKERANK] Nuked your rank! You will get back their normal rank after a round restart";
 
             return false;
         }
