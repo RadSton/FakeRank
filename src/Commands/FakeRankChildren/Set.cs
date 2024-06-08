@@ -7,8 +7,11 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
     using CommandSystem;
 
     using Extensions;
+    
+    using Exiled.Permissions.Extensions;
 
     using io.radston12.fakerank.Helpers;
+    using static io.radston12.fakerank.FakeRank;
 
 
     using Exiled.API.Features;
@@ -33,6 +36,12 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
         {
             Player player = Player.Get(sender);
             Player target = player;
+
+            if (!Permissions.CheckPermission(player, "fakerank.all") && !Permissions.CheckPermission(player, "fakerank.set"))
+            {
+                response = "[FAKERANK] You dont have permission to execute this command!";
+                return false;
+            }
 
             if (player.IsHost)
             {
@@ -60,16 +69,27 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
                 response = "[FAKERANK] Player not found!";
                 return false;
             }
-
+/*
+            if (target.UserId == player.UserId)
+            {
+                response = "[FAKERANK] To set your rank please use SELF instead of SET";
+                return false;
+            }
+*/
             if (!AvailableColors.Contains(arguments.At(1)))
             {
                 response = "[FAKERANK] Invalid color!\nValid Colors are: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default";
                 return false;
             }
 
+            int maxLength = Instance.Config.MaxBadgeLength;
+
             string text = arguments.At(2);
             for (int i = 3; i < arguments.Count; i++)
                 text += " " + arguments.At(i);
+
+            if (text.Length > maxLength)
+                text = text.Substring(0, maxLength);
 
             target.RankName = text;
             target.RankColor = arguments.At(1);
@@ -89,7 +109,7 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
 
             response = $"[FAKERANK] Set rank of {target.Nickname} to \"{target.RankName}\" with the color of {target.RankColor}!";
 
-            return false;
+            return true;
         }
     }
 }

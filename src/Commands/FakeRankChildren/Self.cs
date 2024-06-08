@@ -9,6 +9,9 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
     using Extensions;
 
     using Exiled.API.Features;
+    using Exiled.Permissions.Extensions;
+
+    using static io.radston12.fakerank.FakeRank;
 
     /// <summary>
     /// Sets a fakerank for the player executing
@@ -29,6 +32,12 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
+
+            if (!sender.CheckPermission("fakerank.all") && !sender.CheckPermission("fakerank.self"))
+            {
+                response = "[FAKERANK] You dont have permission to execute this command!";
+                return false;
+            }
 
             if (player.IsHost)
             {
@@ -54,9 +63,14 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
                 return false;
             }
 
+            int maxLength = Instance.Config.MaxBadgeLength;
             string text = arguments.At(1);
             for (int i = 2; i < arguments.Count; i++)
                 text += " " + arguments.At(i);
+
+            if (text.Length > maxLength)
+                text = text.Substring(0, maxLength);
+
 
             player.RankName = text;
             player.RankColor = arguments.At(0);
@@ -76,7 +90,7 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
 
             response = $"[FAKERANK] Set your rank to \"{player.RankName}\" with the color of {player.RankColor}!";
 
-            return false;
+            return true;
         }
     }
 }

@@ -5,6 +5,8 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
     using CommandSystem;
 
     using Extensions;
+    
+    using Exiled.Permissions.Extensions;
 
     using io.radston12.fakerank.Helpers;
 
@@ -25,6 +27,12 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
             Player player = Player.Get(sender);
             Player target = player;
 
+            if (!Permissions.CheckPermission(player, "fakerank.all") && !Permissions.CheckPermission(player, "fakerank.set") && !Permissions.CheckPermission(player, "fakerank.self"))
+            {
+                response = "[FAKERANK] You dont have permission to execute this command!";
+                return false;
+            }
+
             if (player.IsHost)
             {
                 response = "[FAKERANK] This command is only for players!";
@@ -37,14 +45,16 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
                 return false;
             }
 
-            if (arguments.Count != 0)
-                target = RAUserIdParser.getByCommandArgument(arguments.At(0));
-
-
-            if (target == null)
+            if (Permissions.CheckPermission(player, "fakerank.set") || Permissions.CheckPermission(player, "fakerank.all"))
             {
-                response = "[FAKERANK] Target player not found!";
-                return false;
+                if (arguments.Count != 0)
+                    target = RAUserIdParser.getByCommandArgument(arguments.At(0));
+
+                if (target == null)
+                {
+                    response = "[FAKERANK] Target player not found!";
+                    return false;
+                }
             }
 
             if (FakeRankStorage.Storage.ContainsKey(target.UserId))
@@ -56,12 +66,12 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
             target.RankName = "";
             target.RankColor = "default";
 
-            if (arguments.Count != 0)
+            if (arguments.Count != 0 && (Permissions.CheckPermission(player, "fakerank.set") || Permissions.CheckPermission(player, "fakerank.all")))
                 response = $"[FAKERANK] Nuked rank of {target.Nickname}! They will get back their normal rank after a round restart";
             else
-                response = $"[FAKERANK] Nuked your rank! You will get back their normal rank after a round restart";
+                response = $"[FAKERANK] Cleared your rank! You will get back your normal rank after a round restart";
 
-            return false;
+            return true;
         }
     }
 }

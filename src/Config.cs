@@ -22,10 +22,11 @@ namespace io.radston12.fakerank
 
         public bool Debug { get; set; }
 
+        [Description("Max length for badges")]
+        public int MaxBadgeLength { get; set; } = 32;
 
         [Description("The permissions folder path")]
         public string Folder { get; private set; }
-
 
         [Description("The permissions full path")]
         public string FullPath { get; private set; }
