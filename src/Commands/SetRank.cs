@@ -21,7 +21,7 @@ namespace io.radston12.fakerank.Commands
     public class SetRank : ICommand
     {
         public string Command { get; } = "setrank";
-        public string Description { get; } = "Gibt dirseblst einen Rang.";
+        public string Description { get; } = "Setzt Rang. Mehr Info mit .setrank";
         public string[] Aliases { get; } = new string[] { };
 
         /// <inheritdoc/>
@@ -50,10 +50,9 @@ namespace io.radston12.fakerank.Commands
                     }
             }
 
-
             if (arguments.Count < 2)
             {
-                response = "[RANG] Benutzung: .setrank <COLOR> <FAKEBADGE>!";
+                response = "[RANG] Custom Badges v1.4.1\n -> Verwendung: .setrank (COLOR) (Rang)!\nBei FAKEBADGE kann man mehrere Wörter verwenden jedoch nur begrenzt Sonderzeichen\nGültige COLOR-Werte sind: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default\n\nDu kannst deinen Rang auch wieder mit .clearrank entfernen!";
                 return false;
             }
 
@@ -66,8 +65,8 @@ namespace io.radston12.fakerank.Commands
             string suffix = Instance.Config.VIP_Suffix;
             int maxLength = Instance.Config.MaxBadgeLength - suffix.Length;
 
-            string text = arguments.At(2);
-            for (int i = 3; i < arguments.Count; i++)
+            string text = arguments.At(1);
+            for (int i = 2; i < arguments.Count; i++)
                 text += " " + arguments.At(i);
 
             text = StringSanitze.strapoutInvalidCharaters(text, maxLength);

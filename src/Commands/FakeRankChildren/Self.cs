@@ -46,8 +46,8 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
                 return false;
             }
 
-            string text = arguments.At(2);
-            for (int i = 3; i < arguments.Count; i++)
+            string text = arguments.At(1);
+            for (int i = 2; i < arguments.Count; i++)
                 text += " " + arguments.At(i);
 
             text = StringSanitze.strapoutInvalidCharaters(text, Instance.Config.MaxBadgeLength);

@@ -54,7 +54,7 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
             target.RankName = "";
             target.RankColor = "default";
 
-            FakeRankStorage.Storage.Add(player.UserId,
+            FakeRankStorage.Storage.Add(target.UserId,
                        new Dictionary<string, string>()
                            {
                                        { "color", "default" },
