@@ -1,7 +1,7 @@
 namespace io.radston12.fakerank.Commands.FakeRankChildren
 {
     using System;
-        using System.Collections.Generic;
+    using System.Collections.Generic;
 
     using CommandSystem;
 
@@ -30,12 +30,6 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
             if (!Permissions.CheckPermission(player, "fakerank.all"))
             {
                 response = "[FAKERANK] You dont have permission to execute this command!";
-                return false;
-            }
-
-            if (player.IsHost)
-            {
-                response = "[FAKERANK] This command is only for players!";
                 return false;
             }
 

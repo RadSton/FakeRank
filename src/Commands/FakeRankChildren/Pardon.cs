@@ -19,7 +19,7 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
     public class Pardon : ICommand
     {
         public string Command { get; } = "pardon";
-        public string Description { get; } = "Pardons a user from using the player console command .setrank!";
+        public string Description { get; } = "Unbanns a user from using the player console command .setrank!";
         public string[] Aliases { get; } = new string[] { };
 
         /// <inheritdoc/>
@@ -30,12 +30,6 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
             if (!Permissions.CheckPermission(player, "fakerank.all"))
             {
                 response = "[FAKERANK] You dont have permission to execute this command!";
-                return false;
-            }
-
-            if (player.IsHost)
-            {
-                response = "[FAKERANK] This command is only for players!";
                 return false;
             }
 
@@ -52,7 +46,6 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
                 response = "[FAKERANK] Target player not found!";
                 return false;
             }
-
 
             string color = "default";
             string value = "";

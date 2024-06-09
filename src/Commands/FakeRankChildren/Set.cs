@@ -21,13 +21,6 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
     /// </summary>
     public class Set : ICommand
     {
-        public static readonly List<string> AvailableColors = new List<string>()
-        {
-            "pink","red","brown","silver","light_green","crimson","cyan","aqua","deep_pink","tomato","yellow","magenta",
-            "blue_green","orange","lime","green","emerald","carmine","nickel","mint","army_green","pumpkin","default"
-        };
-
-
         public string Command { get; } = "set";
         public string Description { get; } = "Sets a fakerank (for another user)";
         public string[] Aliases { get; } = new string[] { };
@@ -69,27 +62,18 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
                 response = "[FAKERANK] Player not found!";
                 return false;
             }
-            /*
-                        if (target.UserId == player.UserId)
-                        {
-                            response = "[FAKERANK] To set your rank please use SELF instead of SET";
-                            return false;
-                        }
-            */
-            if (!AvailableColors.Contains(arguments.At(1)))
+            
+            if (!ColorHelper.isValidBadgeColor(arguments.At(1)))
             {
                 response = "[FAKERANK] Invalid color!\nValid Colors are: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default";
                 return false;
             }
 
-            int maxLength = Instance.Config.MaxBadgeLength;
-
             string text = arguments.At(2);
             for (int i = 3; i < arguments.Count; i++)
                 text += " " + arguments.At(i);
 
-            if (text.Length > maxLength)
-                text = text.Substring(0, maxLength);
+            text = StringSanitze.strapoutInvalidCharaters(text, Instance.Config.MaxBadgeLength);
 
             target.RankName = text;
             target.RankColor = arguments.At(1);

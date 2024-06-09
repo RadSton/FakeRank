@@ -12,16 +12,16 @@ namespace io.radston12.fakerank.Commands
     using Exiled.Permissions.Extensions;
 
     using static io.radston12.fakerank.FakeRank;
+    using io.radston12.fakerank.Helpers;
 
     /// <summary>
-    /// ö-Console command setrank
+    /// Player Console Command "setrank"
     /// </summary>
     [CommandHandler(typeof(ClientCommandHandler))]
-    public class ClearRank : ICommand
+    public class SetRank : ICommand
     {
-
-        public string Command { get; } = "clearrank";
-        public string Description { get; } = "Entfernt dirseblst einen Rang.";
+        public string Command { get; } = "setrank";
+        public string Description { get; } = "Gibt dirseblst einen Rang.";
         public string[] Aliases { get; } = new string[] { };
 
         /// <inheritdoc/>
@@ -51,8 +51,30 @@ namespace io.radston12.fakerank.Commands
             }
 
 
-            player.RankName = "";
-            player.RankColor = "default";
+            if (arguments.Count < 2)
+            {
+                response = "[RANG] Benutzung: .setrank <COLOR> <FAKEBADGE>!";
+                return false;
+            }
+
+            if (!ColorHelper.isValidBadgeColor(arguments.At(0)))
+            {
+                response = "[RANG] Ungültige Farbe!\nGültige Farben: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default";
+                return false;
+            }
+
+            string suffix = Instance.Config.VIP_Suffix;
+            int maxLength = Instance.Config.MaxBadgeLength - suffix.Length;
+
+            string text = arguments.At(2);
+            for (int i = 3; i < arguments.Count; i++)
+                text += " " + arguments.At(i);
+
+            text = StringSanitze.strapoutInvalidCharaters(text, maxLength);
+            text += suffix;
+
+            player.RankName = text;
+            player.RankColor = arguments.At(0);
 
             if (FakeRankStorage.Storage.ContainsKey(player.UserId))
                 FakeRankStorage.Storage.Remove(player.UserId);
@@ -68,7 +90,7 @@ namespace io.radston12.fakerank.Commands
 
             FakeRankStorage.Save();
 
-            response = $"[RANG] Dein Rang wurde gecleart! Du bekommst deinen default Rang nach einem Rundenneustart/Reconnect wieder!";
+            response = $"[RANG] Dein Rang ist nun \"{player.RankName}\" mit der Farbe {player.RankColor}!";
 
             return true;
         }

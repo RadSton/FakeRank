@@ -18,7 +18,7 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
     public class Clear : ICommand
     {
         public string Command { get; } = "clear";
-        public string Description { get; } = "Clears a fakerank";
+        public string Description { get; } = "Clears fakerank";
         public string[] Aliases { get; } = new string[] { };
 
         /// <inheritdoc/>
@@ -27,25 +27,15 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
             Player player = Player.Get(sender);
             Player target = player;
 
-            if (!Permissions.CheckPermission(player, "fakerank.all") && !Permissions.CheckPermission(player, "fakerank.set") && !Permissions.CheckPermission(player, "fakerank.self"))
+            bool setPermission = Permissions.CheckPermission(player, "fakerank.set");
+
+            if (!setPermission && !Permissions.CheckPermission(player, "fakerank.self"))
             {
                 response = "[FAKERANK] You dont have permission to execute this command!";
                 return false;
             }
 
-            if (player.IsHost)
-            {
-                response = "[FAKERANK] This command is only for players!";
-                return false;
-            }
-
-            if (!player.RemoteAdminAccess)
-            {
-                response = "[FAKERANK] Well well well How can u enter remote admin commands without remote admin permissions?";
-                return false;
-            }
-
-            if (Permissions.CheckPermission(player, "fakerank.set") || Permissions.CheckPermission(player, "fakerank.all"))
+            if (setPermission)
             {
                 if (arguments.Count != 0)
                     target = RAUserIdParser.getByCommandArgument(arguments.At(0));
@@ -66,8 +56,8 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
             target.RankName = "";
             target.RankColor = "default";
 
-            if (arguments.Count != 0 && (Permissions.CheckPermission(player, "fakerank.set") || Permissions.CheckPermission(player, "fakerank.all")))
-                response = $"[FAKERANK] Nuked rank of {target.Nickname}! They will get back their normal rank after a round restart";
+            if (arguments.Count != 0 && setPermission)
+                response = $"[FAKERANK] Cleared rank of {target.Nickname}! They will get back their normal rank after a round restart";
             else
                 response = $"[FAKERANK] Cleared your rank! You will get back your normal rank after a round restart";
 

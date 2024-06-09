@@ -59,7 +59,7 @@ namespace io.radston12.fakerank.Commands
                 return false;
             }
 
-            stringBuilder.AppendLine("Available commands: ");
+            stringBuilder.AppendLine("Version: 1.4.0\nAvailable commands: ");
             stringBuilder.AppendLine("Note: \"<>\"-Arguments are required, while \"[]\"-Arguments are optional!");
 
             if (!all)
