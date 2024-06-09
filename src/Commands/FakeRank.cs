@@ -35,6 +35,9 @@ namespace io.radston12.fakerank.Commands
             RegisterCommand(new Clear());
             RegisterCommand(new Self());
             RegisterCommand(new Set());
+            RegisterCommand(new Ban());
+            RegisterCommand(new Pardon());
+            RegisterCommand(new Reload());
         }
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
@@ -77,11 +80,17 @@ namespace io.radston12.fakerank.Commands
                 }
             }
 
-            stringBuilder.AppendLine("Note: -> You can execute every fakerank command!");
+            if (all)
+                stringBuilder.AppendLine("Note: -> You can execute every fakerank command!");
             stringBuilder.AppendLine("- FAKERANK CLEAR [RA-User-ID] - Nukes any badge.");
             stringBuilder.AppendLine("- FAKERANK SELF <COLOR> <FAKEBADGE> - Sets a fakerank for the executor.");
             stringBuilder.AppendLine("- FAKERANK SET <RA-User-ID> <COLOR> <FAKEBADGE> - Sets a fakerank.");
-
+            if (all)
+            {
+                stringBuilder.AppendLine("- FAKERANK RELOAD - Reloads data changed from the custom config.");
+                stringBuilder.AppendLine("- FAKERANK BAN <RA-User-ID> - Bans someone from using .setrank in player console.");
+                stringBuilder.AppendLine("- FAKERANK PARDON <RA-User-ID> - Pardons someone from using .setrank in player console.");
+            }
 
             response = StringBuilderPool.Pool.ToStringReturn(stringBuilder);
             return false;

@@ -7,7 +7,7 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
     using CommandSystem;
 
     using Extensions;
-    
+
     using Exiled.Permissions.Extensions;
 
     using io.radston12.fakerank.Helpers;
@@ -69,13 +69,13 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
                 response = "[FAKERANK] Player not found!";
                 return false;
             }
-/*
-            if (target.UserId == player.UserId)
-            {
-                response = "[FAKERANK] To set your rank please use SELF instead of SET";
-                return false;
-            }
-*/
+            /*
+                        if (target.UserId == player.UserId)
+                        {
+                            response = "[FAKERANK] To set your rank please use SELF instead of SET";
+                            return false;
+                        }
+            */
             if (!AvailableColors.Contains(arguments.At(1)))
             {
                 response = "[FAKERANK] Invalid color!\nValid Colors are: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default";
@@ -94,20 +94,30 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
             target.RankName = text;
             target.RankColor = arguments.At(1);
 
-            if (FakeRankStorage.Storage.ContainsKey(target.UserId))
+            string isBanned = "false";
+            Dictionary<string, string> playerData;
+            if (FakeRankStorage.Storage.TryGetValue(target.UserId, out playerData))
+            {
+                bool success = playerData.TryGetValue("banned", out isBanned);
+                if(!success) isBanned = "false";
                 FakeRankStorage.Storage.Remove(target.UserId);
+            }
 
             FakeRankStorage.Storage.Add(target.UserId,
                         new Dictionary<string, string>()
                             {
                                        { "color", target.RankColor },
-                                       { "value", target.RankName }
+                                       { "value", target.RankName },
+                                       { "banned", isBanned }
                             }
                     );
 
             FakeRankStorage.Save();
 
             response = $"[FAKERANK] Set rank of {target.Nickname} to \"{target.RankName}\" with the color of {target.RankColor}!";
+
+            if (isBanned.Contains("true"))
+                response += "\nNote: Player is banned from setting rank himself!";
 
             return true;
         }
