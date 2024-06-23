@@ -52,7 +52,7 @@ namespace io.radston12.fakerank.Commands
 
             if (arguments.Count < 2)
             {
-                response = "[RANG] Custom Badges v1.4.1\n -> Verwendung: .setrank (COLOR) (Rang)!\nBei FAKEBADGE kann man mehrere Wörter verwenden jedoch nur begrenzt Sonderzeichen\nGültige COLOR-Werte sind: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default\n\nDu kannst deinen Rang auch wieder mit .clearrank entfernen!";
+                response = "[RANG] Custom Badges v1.4.2\n -> Verwendung: .setrank (COLOR) (RANG)!\nBei (RANG) kann man mehrere Wörter verwenden jedoch nur begrenzt Sonderzeichen\nGültige (COLOR)-Werte sind: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default\n\nDu kannst deinen Rang auch wieder mit .clearrank entfernen!";
                 return false;
             }
 
@@ -70,6 +70,14 @@ namespace io.radston12.fakerank.Commands
                 text += " " + arguments.At(i);
 
             text = StringSanitze.strapoutInvalidCharaters(text, maxLength);
+
+            if (StringSanitze.containsBlacklistedWords(text))
+            {
+                Log.Info($"Blocked FakeRank for {player.Nickname} since they tried to set it to: {text} with color {arguments.At(0)}!");
+                response = "[RANG] Dein Rang konnte nicht gesetzt werden!";
+                return false;   
+            }
+
             text += suffix;
 
             player.RankName = text;

@@ -19,6 +19,9 @@ namespace io.radston12.fakerank
         private PlayerHandler playerHandler;
         public override PluginPriority Priority { get; } = PluginPriority.Last;
 
+        public override string Author { get; } = "radston12";
+
+
         public override void OnEnabled()
         {
             Singleton = this;

@@ -5,6 +5,9 @@ namespace io.radston12.fakerank.Helpers
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
+
+    using static io.radston12.fakerank.FakeRank;
+
     public static class StringSanitze
     {
 
@@ -14,15 +17,28 @@ namespace io.radston12.fakerank.Helpers
         public static string strapoutInvalidCharaters(string original, int maxLength)
         {
             string sanitizedString = Regex.Replace(original, InvalidASCCIRegex, string.Empty);
-            
-            foreach(char invalidChar in InvalidCharacters) 
+
+            foreach (char invalidChar in InvalidCharacters)
                 sanitizedString = sanitizedString.Replace(invalidChar.ToString(), string.Empty);
-            
+
 
             if (sanitizedString.Length > maxLength)
                 sanitizedString = sanitizedString.Substring(0, maxLength);
 
             return sanitizedString;
         }
+
+        public static bool containsBlacklistedWords(string text)
+        {
+            string lowercase = text.ToLower();
+            foreach (string word in Instance.Config.BlackListedWords)
+            {
+                if (lowercase.Contains(word.ToLower()))
+                    return true;
+            }
+
+            return false;
+        }
+
     }
 }
