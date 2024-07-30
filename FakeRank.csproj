@@ -8,12 +8,12 @@
         <Configurations>Debug;Release;Installer</Configurations>
         <Platforms>AnyCPU</Platforms>
 
-        <Version>1.4.2</Version>
+        <Version>1.4.3</Version>
         <Authors>radston12</Authors>
         <AssemblyCompany>radston12</AssemblyCompany>
-        <AssemblyVersion>1.4.2.0</AssemblyVersion>
-        <AssemblyFileVersion>1.4.2.0</AssemblyFileVersion>
-        <AssemblyInformationalVersion>1.4.2</AssemblyInformationalVersion>
+        <AssemblyVersion>1.4.3.0</AssemblyVersion>
+        <AssemblyFileVersion>1.4.3.0</AssemblyFileVersion>
+        <AssemblyInformationalVersion>1.4.3</AssemblyInformationalVersion>
     </PropertyGroup>
 
     <Import Project="../EXILED.props" />

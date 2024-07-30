@@ -14,6 +14,7 @@ namespace io.radston12.fakerank
     /// </summary>
     public class FakeRank : Plugin<Config>
     {
+        public static string VERSION = "v1.4.3";
         private static FakeRank Singleton;
         public static FakeRank Instance => Singleton;
         private PlayerHandler playerHandler;

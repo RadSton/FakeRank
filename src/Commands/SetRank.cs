@@ -52,7 +52,7 @@ namespace io.radston12.fakerank.Commands
 
             if (arguments.Count < 2)
             {
-                response = "[RANG] Custom Badges v1.4.2\n -> Verwendung: .setrank (COLOR) (RANG)!\nBei (RANG) kann man mehrere Wörter verwenden jedoch nur begrenzt Sonderzeichen\nGültige (COLOR)-Werte sind: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default\n\nDu kannst deinen Rang auch wieder mit .clearrank entfernen!";
+                response = "[RANG] Custom Badges " + FakeRank.VERSION + "\n -> Verwendung: .setrank (COLOR) (RANG)!\nBei (RANG) kann man mehrere Wörter verwenden jedoch nur begrenzt Sonderzeichen\nGültige (COLOR)-Werte sind: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default\n\nDu kannst deinen Rang auch wieder mit .clearrank entfernen!";
                 return false;
             }
 
