@@ -20,10 +20,10 @@ namespace io.radston12.fakerank.Commands
     /// FakeRank command via RemoteAdmin
     /// </summary>
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
-    public class FakeRank : ParentCommand
+    public class FakeRankCommand : ParentCommand
     {
 
-        public FakeRank() => LoadGeneratedCommands();
+        public FakeRankCommand() => LoadGeneratedCommands();
 
         public override string Command { get; } = "fakerank";
         public override string[] Aliases { get; } = new[] { "frank", "fakebadge", "fbadge" };
