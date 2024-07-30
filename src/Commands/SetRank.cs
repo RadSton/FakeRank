@@ -29,7 +29,7 @@ namespace io.radston12.fakerank.Commands
         {
             Player player = Player.Get(sender);
 
-            if (!sender.CheckPermission("fakerank.vip"))
+            if (!Permissions.CheckPermission(player, "fakerank.vip")) 
             {
                 response = "You don't have the permissions to execute this command.";
                 return false;
