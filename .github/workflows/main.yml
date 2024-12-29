@@ -1,0 +1,43 @@
+name: FakeRank Build & Release
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+env:
+  REFERENCES_URL: https://exmod-team.github.io/SL-References/Dev.zip
+  REFERENCES_PATH: ${{ github.workspace }}/References
+  EXILED_REFERENCES: ${{ github.workspace }}/References
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3.3.0
+
+      - name: Restore Packages
+        run: nuget restore
+
+      - name: Get Build References
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri ${{ env.REFERENCES_URL }} -OutFile ${{ github.workspace }}/Dev.zip
+          Expand-Archive -Path Dev.zip -DestinationPath ${{ env.REFERENCES_PATH }}
+
+      - name: Setup MSBuild.exe
+        uses: microsoft/Setup-MSBuild@v2
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
+
+      - name: Build
+        run: |
+          msbuild FakeRank\FakeRank.csproj -t:rebuild -property:Configuration=Release -property:ReferencePath="${{ env.REFERENCES_PATH }}"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: FakeRank
+          path: "FakeRank/bin/Release/net4.8.1/FakeRank.dll"
