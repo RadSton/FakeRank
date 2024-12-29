@@ -34,10 +34,10 @@ jobs:
 
       - name: Build
         run: |
-          msbuild FakeRank\FakeRank.csproj -t:rebuild -property:Configuration=Release -property:ReferencePath="${{ env.REFERENCES_PATH }}"
+          msbuild src\FakeRank.csproj -t:rebuild -property:Configuration=Release -property:ReferencePath="${{ env.REFERENCES_PATH }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: FakeRank
-          path: "FakeRank/bin/Release/net4.8.1/FakeRank.dll"
+          path: "src/bin/Release/net4.8.1/FakeRank.dll"
