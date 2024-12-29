@@ -1,41 +1,38 @@
-namespace io.radston12.fakerank
+namespace FakeRank
 {
-    using System.Collections.Generic;
-
+    using System;
     using Exiled.API.Enums;
     using Exiled.API.Features;
-
     using MEC;
-
-    using Events;
+    using Extensions;
 
     /// <summary>
     /// A fake rank plugin
     /// </summary>
     public class FakeRank : Plugin<Config>
     {
-        public static string VERSION = "v1.4.3";
+        
+        public override string Prefix => "FakeRank";
+        public override string Name => "FakeRank";
+        public override string Author => "radston12";
+        public override Version Version => new Version(1, 4, 4);
+        
         private static FakeRank Singleton;
         public static FakeRank Instance => Singleton;
-        private PlayerHandler playerHandler;
         public override PluginPriority Priority { get; } = PluginPriority.Last;
-
-        public override string Author { get; } = "radston12";
-
-
+        
         public override void OnEnabled()
         {
             Singleton = this;
-
-            playerHandler = new PlayerHandler();
-            Exiled.Events.Handlers.Player.Verified += playerHandler.OnVerified;
+            
+            Coroutine.Start();
 
             Timing.CallDelayed(
                 5f,
                 () =>
                 {
-                    Extensions.FakeRankStorage.Create();
-                    Extensions.FakeRankStorage.Reload();
+                    FakeRankStorage.Create();
+                    FakeRankStorage.Reload();
                 });
 
             base.OnEnabled();
@@ -43,9 +40,9 @@ namespace io.radston12.fakerank
 
         public override void OnDisabled()
         {
-            Exiled.Events.Handlers.Player.Verified -= playerHandler.OnVerified;
-
-            Extensions.FakeRankStorage.Storage.Clear();
+            FakeRankStorage.Storage.Clear();
+            
+            Coroutine.Stop();
 
             base.OnDisabled();
         }

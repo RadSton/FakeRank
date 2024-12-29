@@ -1,20 +1,16 @@
-namespace io.radston12.fakerank.Extensions
+namespace FakeRank.Extensions
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
-    using System.Text;
 
-    using Exiled.API.Extensions;
     using Exiled.API.Features;
     using Exiled.API.Features.Pools;
 
-    using YamlDotNet.Core;
     using YamlDotNet.Serialization;
     using YamlDotNet.Serialization.NamingConventions;
 
-    using static io.radston12.fakerank.FakeRank;
+    using static FakeRank;
 
     /// <summary>
     /// Custom FakeRank Config (fakeRanks.yml) 

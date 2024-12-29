@@ -1,8 +1,9 @@
 
-namespace io.radston12.fakerank.Commands
+using FakeRank.Commands.FakeRankChildren;
+
+namespace FakeRank.Commands
 {
     using System;
-    using System.Collections.Generic;
     using System.Text;
 
     using CommandSystem;
@@ -10,11 +11,10 @@ namespace io.radston12.fakerank.Commands
 
     using Exiled.API.Features;
     using Exiled.API.Features.Pools;
-    using Exiled.API.Features.Pickups;
     using Exiled.Permissions.Extensions;
 
-    using io.radston12.fakerank.Extensions;
-    using io.radston12.fakerank.Commands.FakeRankChildren;
+    using FakeRankChildren;
+    using static FakeRank;
 
     /// <summary>
     /// FakeRank command via RemoteAdmin
@@ -59,7 +59,7 @@ namespace io.radston12.fakerank.Commands
                 return false;
             }
 
-            stringBuilder.AppendLine("Version: " + FakeRank.VERSION + "\nAvailable commands: ");
+            stringBuilder.AppendLine("Version: " + Instance.Version + "\nAvailable commands: ");
             stringBuilder.AppendLine("Note: \"<>\"-Arguments are required, while \"[]\"-Arguments are optional!");
 
             if (!all)

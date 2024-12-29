@@ -1,4 +1,4 @@
-namespace io.radston12.fakerank.Commands.FakeRankChildren
+namespace FakeRank.Commands.FakeRankChildren
 {
     using System;
     using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
 
     using Exiled.Permissions.Extensions;
 
-    using io.radston12.fakerank.Helpers;
+    using global::FakeRank.Helpers;
 
     using Exiled.API.Features;
 

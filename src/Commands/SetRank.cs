@@ -1,8 +1,9 @@
-namespace io.radston12.fakerank.Commands
+using FakeRank.Helpers;
+
+namespace FakeRank.Commands
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
 
     using CommandSystem;
 
@@ -11,8 +12,8 @@ namespace io.radston12.fakerank.Commands
     using Exiled.API.Features;
     using Exiled.Permissions.Extensions;
 
-    using static io.radston12.fakerank.FakeRank;
-    using io.radston12.fakerank.Helpers;
+    using static FakeRank;
+    using Helpers;
 
     /// <summary>
     /// Player Console Command "setrank"
@@ -52,7 +53,7 @@ namespace io.radston12.fakerank.Commands
 
             if (arguments.Count < 2)
             {
-                response = "[RANG] Custom Badges " + FakeRank.VERSION + "\n -> Verwendung: .setrank (COLOR) (RANG)!\nBei (RANG) kann man mehrere Wörter verwenden jedoch nur begrenzt Sonderzeichen\nGültige (COLOR)-Werte sind: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default\n\nDu kannst deinen Rang auch wieder mit .clearrank entfernen!";
+                response = "[RANG] Custom Badges " + Instance.Version + "\n -> Verwendung: .setrank (COLOR) (RANG)!\nBei (RANG) kann man mehrere Wörter verwenden jedoch nur begrenzt Sonderzeichen\nGültige (COLOR)-Werte sind: pink, red, brown, silver, light_green, crimson, cyan, aqua, deep_pink, tomato, yellow, magenta, blue_green, orange, lime, green, emerald, carmine, nickel, mint, army_green, pumpkin, default\n\nDu kannst deinen Rang auch wieder mit .clearrank entfernen!";
                 return false;
             }
 
@@ -62,7 +63,7 @@ namespace io.radston12.fakerank.Commands
                 return false;
             }
 
-            string suffix = Instance.Config.VIP_Suffix;
+            string suffix = Instance.Config.VipSuffix;
             int maxLength = Instance.Config.MaxBadgeLength - suffix.Length;
 
             string text = arguments.At(1);
@@ -75,7 +76,7 @@ namespace io.radston12.fakerank.Commands
             {
                 Log.Info($"Blocked FakeRank for {player.Nickname} since they tried to set it to: {text} with color {arguments.At(0)}!");
                 response = "[RANG] Dein Rang konnte nicht gesetzt werden!";
-                return false;   
+                return false;
             }
 
             text += suffix;

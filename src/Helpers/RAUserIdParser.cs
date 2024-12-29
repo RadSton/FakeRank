@@ -1,4 +1,4 @@
-namespace io.radston12.fakerank.Helpers
+namespace FakeRank.Helpers
 {
 
     using System;

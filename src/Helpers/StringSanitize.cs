@@ -1,4 +1,4 @@
-namespace io.radston12.fakerank.Helpers
+namespace FakeRank.Helpers
 {
 
     using System;
@@ -6,7 +6,7 @@ namespace io.radston12.fakerank.Helpers
     using System.Text.RegularExpressions;
 
 
-    using static io.radston12.fakerank.FakeRank;
+    using static FakeRank;
 
     public static class StringSanitze
     {

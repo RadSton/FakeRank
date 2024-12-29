@@ -1,4 +1,4 @@
-namespace io.radston12.fakerank
+namespace FakeRank
 {
     using System.ComponentModel;
     using System.IO;
@@ -6,7 +6,8 @@ namespace io.radston12.fakerank
 
     using Exiled.API.Features;
     using Exiled.API.Interfaces;
-
+    
+    /// <inheritdoc cref="IConfig"/>
     public sealed class Config : IConfig
     {
 
@@ -19,6 +20,7 @@ namespace io.radston12.fakerank
             FullPath = Path.Combine(Folder, "fakeRanks.yml");
         }
 
+        
         public bool IsEnabled { get; set; } = true;
 
         public bool Debug { get; set; }
@@ -33,7 +35,7 @@ namespace io.radston12.fakerank
         public string FullPath { get; private set; }
 
         [Description("The suffix for players using player console instead of remote admin!\nNOTE: This string is very limited in chraracters for example \"[\",\"]\" do not work!")]
-        public string VIP_Suffix { get; set; } = " (VIP)";
+        public string VipSuffix { get; set; } = " (VIP)";
 
         [Description("Blacklisted words for player console commands (ignores lowercase or uppercase ; looks if some of these words are INCLUDED in the fake rank so you dont have to add everything)")]
         public List<string> BlackListedWords { get; private set; } = new List<string> {

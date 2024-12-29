@@ -1,4 +1,4 @@
-namespace io.radston12.fakerank.Commands
+namespace FakeRank.Commands
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace io.radston12.fakerank.Commands
     using Exiled.API.Features;
     using Exiled.Permissions.Extensions;
 
-    using static io.radston12.fakerank.FakeRank;
+    using static FakeRank;
 
     /// <summary>
     /// ö-Console command setrank

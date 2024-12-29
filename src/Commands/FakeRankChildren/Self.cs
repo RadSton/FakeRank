@@ -1,4 +1,6 @@
-namespace io.radston12.fakerank.Commands.FakeRankChildren
+using FakeRank.Helpers;
+
+namespace FakeRank.Commands.FakeRankChildren
 {
     using System;
     using System.Collections.Generic;
@@ -11,8 +13,8 @@ namespace io.radston12.fakerank.Commands.FakeRankChildren
     using Exiled.API.Features;
     using Exiled.Permissions.Extensions;
 
-    using static io.radston12.fakerank.FakeRank;
-    using io.radston12.fakerank.Helpers;
+    using static FakeRank;
+    using global::FakeRank.Helpers;
 
     /// <summary>
     /// Sets a fakerank for the player executing
