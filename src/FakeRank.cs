@@ -16,7 +16,7 @@ namespace FakeRank
         public override string Prefix => "FakeRank";
         public override string Name => "FakeRank";
         public override string Author => "radston12";
-        public override Version Version => new Version(1, 4, 4);
+        public override Version Version => new Version(1, 4, 5);
         
         private static FakeRank Singleton;
         public static FakeRank Instance => Singleton;

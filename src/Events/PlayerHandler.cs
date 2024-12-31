@@ -9,7 +9,7 @@ namespace FakeRank.Events
 
     using MEC;
 
-    using FakeRank.Extensions;
+    using Extensions;
 
     /// <summary>
     /// Gives player rank on join 
@@ -20,7 +20,7 @@ namespace FakeRank.Events
         public void OnVerified(VerifiedEventArgs ev)
         {
             Dictionary<string, string> playerData;
-            
+
             if (FakeRankStorage.Storage.TryGetValue(ev.Player.UserId, out playerData))
             {
                 string color = "default";
