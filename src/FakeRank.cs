@@ -5,6 +5,7 @@ namespace FakeRank
     using Exiled.API.Features;
     using MEC;
     using Extensions;
+    using Events;
 
     /// <summary>
     /// A fake rank plugin
@@ -24,6 +25,9 @@ namespace FakeRank
         public override void OnEnabled()
         {
             Singleton = this;
+
+            playerHandler = new PlayerHandler();
+            Exiled.Events.Handlers.Player.Verified += playerHandler.OnVerified;
             
             Coroutine.Start();
 
