@@ -20,6 +20,7 @@ namespace FakeRank
         
         private static FakeRank Singleton;
         public static FakeRank Instance => Singleton;
+        public static PlayerHandler playerHandler;
         public override PluginPriority Priority { get; } = PluginPriority.Last;
         
         public override void OnEnabled()
