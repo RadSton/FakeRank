@@ -28,7 +28,7 @@ namespace FakeRank.Events
 
                 bool shouldApply = playerData.TryGetValue("color", out color) && playerData.TryGetValue("value", out value);
 
-                if (!shouldApply)
+                if (!shouldApply && value.Length <= 1)
                     return;
 
                 ev.Player.RankName = value;

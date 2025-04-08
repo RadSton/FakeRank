@@ -44,6 +44,9 @@ namespace FakeRank.Extensions
                         !playerData.TryGetValue("value", out string value))
                         return;
 
+                    if(value.Length < 2)
+                        return;
+
                     player.RankName = value;
                     player.RankColor = color;
                     Log.Debug($"Set FakeRank for {player.Nickname} to {value} with color {color}!");
