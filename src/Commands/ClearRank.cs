@@ -29,7 +29,8 @@ namespace FakeRank.Commands
         {
             Player player = Player.Get(sender);
 
-            if (!Permissions.CheckPermission(player, "fakerank.vip"))
+            
+            if (!Helpers.LabApiPermissions.checkCommandSender(sender, "fakerank.vip"))
             {
                 response = "You don't have the permissions to execute this command.";
                 return false;

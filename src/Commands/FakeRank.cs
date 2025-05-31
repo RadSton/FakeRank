@@ -47,9 +47,9 @@ namespace FakeRank.Commands
 
             StringBuilder stringBuilder = StringBuilderPool.Pool.Get();
 
-            bool self = Permissions.CheckPermission(player, "fakerank.self");
-            bool set = Permissions.CheckPermission(player, "fakerank.set");
-            bool all = Permissions.CheckPermission(player, "fakerank.all");
+            bool self = Helpers.LabApiPermissions.checkCommandSender(sender, "fakerank.self");
+            bool set =  Helpers.LabApiPermissions.checkCommandSender(sender, "fakerank.set");
+            bool all =  Helpers.LabApiPermissions.checkCommandSender(sender, "fakerank.all");
 
             if (!self && !set && !all)
             {
