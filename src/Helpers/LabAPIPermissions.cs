@@ -10,7 +10,7 @@ namespace FakeRank.Helpers
 
         public static bool checkCommandSender(ICommandSender sender, string permission)
         {
-            return PermissionExtensions.HasPermissions(sender, permission);
+            return PermissionsExtensions.HasPermissions(sender, permission);
         }
     }
 }

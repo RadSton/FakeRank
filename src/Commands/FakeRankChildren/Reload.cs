@@ -27,7 +27,7 @@ namespace FakeRank.Commands.FakeRankChildren
         {
             Player player = Player.Get(sender);
 
-            if (!Helpers.LabApiPermissions.checkCommandSender(sender, "fakerank.all"))
+            if (!LabApiPermissions.checkCommandSender(sender, "fakerank.all"))
             {
                 response = "[FAKERANK] You dont have permission to execute this command!";
                 return false;
